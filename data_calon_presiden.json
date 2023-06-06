@@ -1,0 +1,22 @@
+{
+    "Presiden": [
+      {
+        "nomor_urut": "1",
+        "nama": "Dani Prabowo",
+        "visi": "Visi Dani Prabowo: Terwujudnya negara yang maju dan berdaulat.",
+        "misi": "Misi Dani Prabowo: 1. Peningkatan Kualitas Manusian Indonesia. 2. Pembangunan yang Merata dan Berkeadilan. 3. Mencapai Lingkungan Hidup yang Berkelanjutan"
+      },
+      {
+        "nomor_urut": "2",
+        "nama": "Winasti Arumi",
+        "visi": "Visi Winasti Arumi: Terwujudnya Bangsa dan Negara Republik Indonesia yang adil, makmur bermartabat, relijius, berdaulat di bidang politik.",
+        "misi": "Misi Winasti Arumi: 1. Kemajuan Budaya yang Mencerminkan Kepribadian Bangsa. 2. Sinergi Pemerintah Daerah dalam Kerangka Negara Kesatuan. 3. Pengelolaan Pemerintah yang Bersih, Efektif, dan Terpercaya."
+      },
+      {
+        "nomor_urut": "3",
+        "nama": "Eriawan Gandhi",
+        "visi": "Visi Eriawan Gandhi: Terwujudnya Dukungan Teknis dan Pelayanan Administrasi secara Prima, Profesional, Transparan dan Akuntabel kepada Wakil Presiden.",
+        "misi": "Misi Eriawan Gandhi: 1. Mencapai lingkungan hidup yang berkelanjutan. 2. Kemajuan budaya yang mencerminkan kepribadian bangsa. 3. Struktur ekonomi yang produktif, mandiri, dan berdaya saing."
+      }
+    ]
+}    
