@@ -1,0 +1,31 @@
+{
+    "Solo": [
+      {
+        "nomor_urut": "1",
+        "nama": "Bambang Suhardi",
+        "visi": "Visi Bambang Suhardi: Menjadikan kota ini lebih maju dan berkembang.",
+        "misi": "Misi Bambang Suhardi: 1. Meningkatkan kualitas infrastruktur. 2. Mendorong pertumbuhan ekonomi. 3. Memperkuat pendidikan dan kesehatan."
+      },
+      {
+        "nomor_urut": "2",
+        "nama": "Haji Irawan",
+        "visi": "Visi Haji Irawan: Mewujudkan kehidupan yang lebih baik untuk warga kota.",
+        "misi": "Misi Haji Irawan: 1. Meningkatkan kualitas pelayanan publik. 2. Memperkuat sektor pariwisata. 3. Mendorong inovasi dan teknologi."
+      }
+    ],
+    "Klaten": [
+      {
+        "nomor_urut": "1",
+        "nama": "Riyanto",
+        "visi": "Visi Riyanto: Mengutamakan partisipasi dan keadilan dalam pembangunan kota.",
+        "misi": "Misi Riyanto: 1. Mendorong partisipasi masyarakat dalam pengambilan keputusan. 2. Memperkuat kesetaraan gender dan hak asasi manusia. 3. Menjaga kelestarian lingkungan."
+      },
+      {
+        "nomor_urut": "2",
+        "nama": "Supriadi",
+        "visi": "Visi Supriadi: Membangun kota yang inklusif dan berkelanjutan.",
+        "misi": "Misi Supriadi: 1. Mengurangi kesenjangan sosial dan ekonomi. 2. Mengembangkan transportasi ramah lingkungan. 3. Menjaga keberagaman budaya dan suku."
+      }
+    ]
+  }
+  
