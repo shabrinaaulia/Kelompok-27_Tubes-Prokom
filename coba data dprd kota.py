@@ -1,9 +1,9 @@
-import json
+import csv
 
 # Fungsi untuk membaca data calon DPRD Kota dari file
 def baca_data_calon():
-    with open("data_calon.json", "r") as file:
-        data_calon = json.load(file)
+    with open("data_calon.csv", "r") as file:
+        data_calon = csv.load(file)
     return data_calon
 
 # Fungsi untuk menampilkan daftar calon DPRD Kota berdasarkan kota
@@ -62,7 +62,7 @@ def pemilihan_dprd_kota():
             print(f"Misi: {misi}")
             print("--------------------")
 
-            yakin = input("Apakah Anda yakin dengan pilihan Anda? (y/n): ")
+            yakin = input("Apakah Anda yakin dengan pilihan Anda? (Ya/Tidak): ")
             if yakin.lower() != 'y':
                 continue
 
