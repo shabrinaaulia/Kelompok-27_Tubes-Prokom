@@ -1,0 +1,22 @@
+{
+    "Jakarta": [
+      {
+        "nomor_urut": "1",
+        "nama": "Budi Sadikin",
+        "visi": "Visi Budi Sadikin: Membangun provinsi yang maju dan sejahtera melalui pembangunan infrastruktur yang berkualitas, peningkatan kualitas pendidikan, dan pemberdayaan ekonomi masyarakat.",
+        "misi": "Misi Budi Sadikin: 1. Meningkatkan infrastruktur. 2. Meningkatkan mutu pendidikan. 3. Memperkuat tata kelola pemerintahan"
+      },
+      {
+        "nomor_urut": "2",
+        "nama": "Haji Sunarto",
+        "visi": "Visi Haji Irawan: Mewujudkan kehidupan yang lebih baik untuk warga kota.",
+        "misi": "Misi Haji Irawan: 1. Meningkatkan kualitas pelayanan publik. 2. Memperkuat sektor pariwisata. 3. Mendorong inovasi dan teknologi."
+      },
+      {
+        "nomor_urut": "3",
+        "nama": "Roni Alves",
+        "visi": "Roni Alves: Menjadikan provinsi sebagai pusat inovasi dan teknologi yang berkelanjutan melalui pengembangan sektor industri kreatif, pemanfaatan energi terbarukan, dan peningkatan akses teknologi informasi.",
+        "misi": "Roni Alves: 1. Meningkatkan optimalisasi fungsi legislasi. 2. Memperkuat sektor pertanian. 3. Mendorong inovasi di bidang Perikanan."
+      }
+    ]
+}    
