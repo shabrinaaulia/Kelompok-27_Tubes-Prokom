@@ -72,4 +72,4 @@ def pemilihan_DPRDProvinsi():
             print("Provinsi yang Anda masukkan tidak valid. Silakan coba lagi.")
 
 # Menjalankan program pemilihan DPRD Provinsi
-pemilihan_DPRDProvinsi()
+pemilihan_DPRDProvinsi() 
