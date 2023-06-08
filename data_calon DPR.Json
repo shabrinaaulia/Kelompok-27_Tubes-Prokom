@@ -1,0 +1,73 @@
+{
+    "Jakarta Pusat": [
+      {
+        "nomor_urut": "1",
+        "nama": "Sunarto ",
+        "visi": "Visi Sunarto: Menjadi pemimpin yang terpercaya",
+        "misi": "Misi sunarto: 1. Meningkatkan kemakmuran rakyat. 2. Meningkatkan kualitas masyarakat. 3. Memperkuat sistem teknologi "
+      },
+      {
+        "nomor_urut": "2",
+        "nama": "Salahudin",
+        "visi": "Visi Salahudin: Mewujudkan masarakat yang sejahtera.",
+        "misi": "Salahudin: 1. Meningkatkan keamanan masyarakat. 2. Memperkuat sektor pendidikan. 3. Mendorong semangat demokrasi."
+      }
+    ],
+    "Jakarta Selatan": [
+      {
+        "nomor_urut": "1",
+        "nama": "Adi Pamungkas",
+        "visi": "Visi Adi Pamungkas: Meningkatkan inovasi sektor ekonomi.",
+        "misi": "Misi adi Pamungkas: 1. Mendorong semangat pemilu. 2. Memperkuat masyarakat yang sejahtera. 3. Menjamin keamanan masyarakat."
+      },
+      {
+        "nomor_urut": "2",
+        "nama": "Sutono",
+        "visi": "Visi Sutono: Membangun kota yang bersih.",
+        "misi": "Misi Sutono: 1. Mengurangi polusi. 2. Mengembangkan produk dalam negeri. 3. Menjaga stabilitas ekonomi."
+      }
+    ],
+    "Jakarta Barat": [
+      {
+        "nomor_urut": "1",
+        "nama": "Panji Suroso",
+        "visi": "Visi Panji Suroso: Menjamin Hak dan asasi Manusia.",
+        "misi": "Misi Panji Suroso: 1. Mendorong masyarakat yang makmur. 2. Memperkuat semangat nasionalisme 3.Meningkatkan layanan masyarakat."
+      },
+      {
+        "nomor_urut": "2",
+        "nama": "Toniyanto",
+        "visi": "Visi Toniyanto: Membangun kota yang bersih dan nyaman.",
+        "misi": "Misi Supriadi: 1. Mengurangi masalah ekonomi. 2. Mengembangka bahan bakar listrik. 3. Menjunjung rakyat yang maju."
+      }
+    ],
+    "Jakarta Timur": [
+      {
+        "nomor_urut": "1",
+        "nama": "Suratno",
+        "visi": "Visi Suratno: Mengutamakan semangat bela negara.",
+        "misi": "Misi Suratno: 1. Mendorong partisipasi masyarakat dalam membangun negri. 2. Memperkuat keagamaan . 3. Mengurangi masalah sampah."
+      },
+      {
+        "nomor_urut": "2",
+        "nama": "Sutoni",
+        "visi": "Visi Sutoni: Mengembangkan Kota yang bersih.",
+        "misi": "Misi Sutoni: 1. Mengurangi angka pengangguran. 2. Meningkatkan lapangan pekerjaan. 3. Menjaga semangat masyarakat ."
+      }
+    ],
+    "Jakarta Utara": [
+      {
+        "nomor_urut": "1",
+        "nama": "Tomiyanto",
+        "visi": "Visi Tomiyanto: Mengutamakan masalah kependudukan",
+        "misi": "Misi Tomiyanto: 1. Meningkatkan semangat kekeluargaan. 2. Memperkuat kegiatan masyarakat. 3. Menjaga kelestarian kota."
+      },
+      {
+        "nomor_urut": "2",
+        "nama": "Bagas adi",
+        "visi": "Visi Bagas adi: Membangun kota yang maju",
+        "misi": "Misi Bagas Adi: 1. Meningkatkan ekonomi di kota. 2. Mengurangi masalah lingkungan. 3. Menjaga keberagaman suku dan agama sera ras."
+      }
+    ] 
+  }
+  
