@@ -1,6 +1,6 @@
 import json
 
-# Fungsi untuk membaca data calon DPR dari file JSON
+# Fungsi untuk membaca data calon DPR dari file JSON 
 def baca_data_calon():
     with open("data_calon DPR.json", "r") as file:
         data_calon_DPR = json.load(file)
@@ -40,7 +40,7 @@ def get_visi_misi(nomor_urut, data_calon_DPR):
 
     return visi, misi
 
-# Fungsi untuk menjalankan program pemilihan DPR Kota
+# Fungsi untuk menjalankan program pemilihan DPR 
 def pemilihan_DPR():
     while True:
         print("Pemilihan DPR")
