@@ -1,3 +1,4 @@
+# Menjalankan program pemilihan DPRD Provinsi
 import json
 
 # Fungsi untuk membaca data calon DPRD Provinsi dari file JSON
