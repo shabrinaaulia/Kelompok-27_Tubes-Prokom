@@ -36,7 +36,7 @@ def input_data(data):
     print("Data berhasil disimpan.")
 
 def main():
-    filename = "datapemilih.csv"
+    filename = "data_pemilih.csv"
     header, data = load_data(filename)
 
     while True:
