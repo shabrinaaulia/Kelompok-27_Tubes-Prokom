@@ -41,7 +41,7 @@ def get_visi_misi(nomor_urut, data_calon_DPD):
     return visi, misi
 
 # Fungsi untuk menjalankan program pemilihan DPRD Provinsi
-def pemilihan_DPRDProvinsi():
+def pemilihan_DPD():
     while True:
         print("Pemilihan DPD")
         print("--------------------")
@@ -72,4 +72,4 @@ def pemilihan_DPRDProvinsi():
             print("Provinsi yang Anda masukkan tidak valid. Silakan coba lagi.")
 
 # Menjalankan program pemilihan DPRD Provinsi
-pemilihan_DPRDProvinsi() 
+pemilihan_DPD() 
