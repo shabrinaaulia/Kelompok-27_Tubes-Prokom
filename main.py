@@ -113,7 +113,7 @@ def get_visi_misi(nomor_urut, data_calon_dprd_kota):
     misi = ""
 
     for kota in data_calon_dprd_kota:
-        for calon in data_calon_dprd_kota[kota]:
+        for calon in data_calon_dprd_kota[kota]: 
             if calon['nomor_urut'] == nomor_urut:
                 visi = calon['visi']
                 misi = calon['misi']
