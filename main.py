@@ -1,24 +1,34 @@
 import csv
 import sys
 
+# Inisialisasi stack untuk melacak menu-menu yang dikunjungi
+menu_stack = []
+
 def load_data(filename):
     data = []
-    with open(filename, 'r') as file:
-        reader = csv.reader(file)
-        try:
-            header = next(reader)
-        except StopIteration:
-            print("File CSV kosong atau tidak memiliki header yang sesuai.")
-        header = []
-        for row in reader:
-            data.append(row)
+    try:
+        with open(filename, 'r') as file:
+            reader = csv.reader(file)
+            try:
+                header = next(reader)
+            except StopIteration:
+                print("File CSV kosong atau tidak memiliki header yang sesuai.")
+                return [], data
+            for row in reader:
+                data.append(row)
+    except FileNotFoundError:
+        print("File tidak ditemukan.")
+        return [], data
     return header, data
 
 def save_data(filename, header, data):
-    with open(filename, 'w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(header)
-        writer.writerows(data)
+    try:
+        with open(filename, 'w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(header)
+            writer.writerows(data)
+    except IOError:
+        print("Terjadi kesalahan saat menyimpan data.")
 
 def check_duplicate_data(data, new_data):
     for row in data:
@@ -28,10 +38,10 @@ def check_duplicate_data(data, new_data):
 
 def input_data(data):
     asal = input("Masukkan Asal: ")
-    nim = input("Masukkan Nim: ")
+    NIK = input("Masukkan NIK: ")
     nama = input("Masukkan Nama: ")
 
-    new_data = [asal, nim, nama]
+    new_data = [asal, NIK, nama]
 
     if check_duplicate_data(data, new_data):
         print("Data sudah digunakan sebelumnya. Silakan input data lagi.")
@@ -53,23 +63,41 @@ def main():
         print("4. Pemilihan DPRD Provinsi")
         print("5. Pemilihan DPD")
         print("6. Pemilihan DPR")
-        print("7. Exit")
-        choice = input("Pilih menu (1/2/3/4/5/6/7): ")
+        print("7. Kembali ke Menu Sebelumnya")
+        print("8. Exit")
+        choice = input("Pilih menu (1/2/3/4/5/6/7/8): ")
 
         if choice == "1":
+            # Tambahkan menu saat ini ke stack
+            menu_stack.append(main)
             input_data(data)
         elif choice == "2":
             save_data(filename, header, data)
             break
         elif choice == "3":
+            # Tambahkan menu saat ini ke stack
+            menu_stack.append(main)
             pemilihan_dprd_kota()
         elif choice == "4":
+            # Tambahkan menu saat ini ke stack
+            menu_stack.append(main)
             pemilihan_DPRDProvinsi()
         elif choice == "5":
+            # Tambahkan menu saat ini ke stack
+            menu_stack.append(main)
             pemilihan_DPD()
         elif choice == "6":
+            # Tambahkan menu saat ini ke stack
+            menu_stack.append(main)
             pemilihan_DPR()
         elif choice == "7":
+            # Cek apakah ada menu sebelumnya yang dapat dikembalikan
+            if menu_stack:
+                previous_menu = menu_stack.pop()
+                previous_menu()
+            else:
+                print("Tidak ada menu sebelumnya yang dapat dikembalikan.")
+        elif choice == "8":
             save_data(filename, header, data)
             print("Terima Kasih! Program selesai.")
             sys.exit()
@@ -79,16 +107,25 @@ def main():
 if __name__ == "__main__":
     main()
 
-import json
 
 # Fungsi untuk membaca data calon DPRD Kota dari file JSON
+import json
+
 def baca_data_calon():
-    with open("data_calon_dprd_kota.json", "r") as file:
-        data_calon_dprd_kota = json.load(file)
-    return data_calon_dprd_kota
+    try:
+        with open("data_calon_dprd_kota.json", "r") as file:
+            data_calon_dprd_kota = json.load(file)
+        return data_calon_dprd_kota
+    except FileNotFoundError:
+        print("File data_calon_dprd_kota.json tidak ditemukan.")
+        return {}
 
 # Fungsi untuk menampilkan daftar calon DPRD Kota berdasarkan Kota
 def tampilkan_daftar_calon(Kota, data_calon):
+    if Kota not in data_calon:
+        print(f"Tidak ada data calon DPRD Kota {Kota}.")
+        return
+
     print(f"Daftar Calon DPRD Kota {Kota}:")
     print("--------------------")
 
@@ -113,7 +150,7 @@ def get_visi_misi(nomor_urut, data_calon_dprd_kota):
     misi = ""
 
     for kota in data_calon_dprd_kota:
-        for calon in data_calon_dprd_kota[kota]: 
+        for calon in data_calon_dprd_kota[kota]:
             if calon['nomor_urut'] == nomor_urut:
                 visi = calon['visi']
                 misi = calon['misi']
@@ -125,13 +162,13 @@ def get_visi_misi(nomor_urut, data_calon_dprd_kota):
 def pemilihan_dprd_kota():
     data_suara = {}
     data_calon = baca_data_calon()
-    
+
     for kota in data_calon:
         data_suara[kota] = {}
-        
+
         for calon in data_calon[kota]:
             data_suara[kota][calon['nomor_urut']] = 0
-    
+
     while True:
         print("Pemilihan DPRD Kota")
         print("--------------------")
@@ -159,7 +196,6 @@ def pemilihan_dprd_kota():
             if nomor_urut in data_suara[Kota]:
                 data_suara[Kota][nomor_urut] += 1
                 print("Suara Anda telah tercatat.")
-
             else:
                 print("Nomor urut yang Anda pilih tidak valid.")
 
@@ -167,26 +203,34 @@ def pemilihan_dprd_kota():
         else:
             print("Kota yang Anda masukkan tidak valid. Silakan coba lagi.")
 
-    with open("data_suara_dprd_kota.json", "w") as file:
-        json.dump(data_suara, file)
-
-    print("Terima kasih atas partisipasi Anda dalam pemilihan DPRD Kota.")
+    try:
+        with open("data_suara_dprd_kota.json", "w") as file:
+            json.dump(data_suara, file)
+        print("Terima kasih atas partisipasi Anda dalam pemilihan DPRD Kota.")
+    except IOError:
+        print("Terjadi kesalahan saat menyimpan data suara.")
 
 # Menjalankan program pemilihan DPRD Kota
 pemilihan_dprd_kota()
 
-#Perhitungan DPRD Provinsi
-
+# Menjalankan program pemilihan DPRD Provinsi
 import json
 
-# Fungsi untuk membaca data calon DPRD Kota dari file JSON
 def baca_data_calon():
-    with open("data_calon_DPRDProvinsi.json", "r") as file:
-        data_calon_DPRDProvinsi = json.load(file)
-    return data_calon_DPRDProvinsi
+    try:
+        with open("data_calon_DPRDProvinsi.json", "r") as file:
+            data_calon_DPRDProvinsi = json.load(file)
+        return data_calon_DPRDProvinsi
+    except FileNotFoundError:
+        print("File data_calon_DPRDProvinsi.json tidak ditemukan.")
+        return {}
 
-# Fungsi untuk menampilkan daftar calon DPRD Kota berdasarkan Kota
+# Fungsi untuk menampilkan daftar calon DPRD Provinsi berdasarkan Provinsi
 def tampilkan_daftar_calon(Provinsi, data_calon):
+    if Provinsi not in data_calon:
+        print(f"Tidak ada data calon DPRD Provinsi {Provinsi}.")
+        return
+
     print(f"Daftar Calon DPRD Provinsi {Provinsi}:")
     print("--------------------")
 
@@ -195,7 +239,7 @@ def tampilkan_daftar_calon(Provinsi, data_calon):
         print(f"Nama Calon: {calon['nama']}")
         print("--------------------")
 
-# Fungsi untuk mendapatkan input Kota dari pengguna
+# Fungsi untuk mendapatkan input Provinsi dari pengguna
 def input_Provinsi():
     Provinsi = input("Masukkan nama Provinsi Anda: ")
     return Provinsi
@@ -210,8 +254,8 @@ def get_visi_misi(nomor_urut, data_calon_DPRDProvinsi):
     visi = ""
     misi = ""
 
-    for kota in data_calon_DPRDProvinsi:
-        for calon in data_calon_DPRDProvinsi[kota]:
+    for Provinsi in data_calon_DPRDProvinsi:
+        for calon in data_calon_DPRDProvinsi[Provinsi]:
             if calon['nomor_urut'] == nomor_urut:
                 visi = calon['visi']
                 misi = calon['misi']
@@ -223,21 +267,21 @@ def get_visi_misi(nomor_urut, data_calon_DPRDProvinsi):
 def pemilihan_DPRDProvinsi():
     data_suara = {}
     data_calon = baca_data_calon()
-    
+
     for Provinsi in data_calon:
         data_suara[Provinsi] = {}
-        
+
         for calon in data_calon[Provinsi]:
             data_suara[Provinsi][calon['nomor_urut']] = 0
-    
+
     while True:
         print("Pemilihan DPRD Provinsi")
         print("--------------------")
 
-        Kota = input_Provinsi()
+        Provinsi = input_Provinsi()
         data_calon_DPRDProvinsi = baca_data_calon()
 
-        if Kota in data_calon_DPRDProvinsi:
+        if Provinsi in data_calon_DPRDProvinsi:
             tampilkan_daftar_calon(Provinsi, data_calon_DPRDProvinsi)
 
             nomor_urut = input_nomor_urut()
@@ -255,34 +299,40 @@ def pemilihan_DPRDProvinsi():
                 continue
 
             if nomor_urut in data_suara[Provinsi]:
-                data_suara[Kota][nomor_urut] += 1
+                data_suara[Provinsi][nomor_urut] += 1
                 print("Suara Anda telah tercatat.")
-
             else:
                 print("Nomor urut yang Anda pilih tidak valid.")
-
             break
         else:
             print("Provinsi yang Anda masukkan tidak valid. Silakan coba lagi.")
 
-    with open("data_suara_DPRDProvinsi", "w") as file:
-        json.dump(data_suara, file)
-
-    print("Terima kasih atas partisipasi Anda dalam pemilihan DPRD Provinsi.")
+    try:
+        with open("data_suara_DPRDProvinsi.json", "w") as file:
+            json.dump(data_suara, file)
+        print("Terima kasih atas partisipasi Anda dalam pemilihan DPRD Provinsi.")
+    except IOError:
+        print("Terjadi kesalahan saat menyimpan data suara.")
 
 # Menjalankan program pemilihan DPRD Provinsi
 pemilihan_DPRDProvinsi()
-
 import json
 
-# Fungsi untuk membaca data calon DPD dari file JSON
 def baca_data_calon():
-    with open("data_calon_DPD.json", "r") as file:
-        data_calon_DPD = json.load(file)
-    return data_calon_DPD
+    try:
+        with open("data_calon_DPD.json", "r") as file:
+            data_calon_DPD = json.load(file)
+        return data_calon_DPD
+    except FileNotFoundError:
+        print("File data_calon_DPD.json tidak ditemukan.")
+        return {}
 
-# Fungsi untuk menampilkan daftar calon DPD berdasarkan Kota
+# Fungsi untuk menampilkan daftar calon DPD berdasarkan Provinsi
 def tampilkan_daftar_calon(Provinsi, data_calon):
+    if Provinsi not in data_calon:
+        print(f"Tidak ada data calon DPD {Provinsi}.")
+        return
+
     print(f"Daftar Calon DPD {Provinsi}:")
     print("--------------------")
 
@@ -291,7 +341,7 @@ def tampilkan_daftar_calon(Provinsi, data_calon):
         print(f"Nama Calon: {calon['nama']}")
         print("--------------------")
 
-# Fungsi untuk mendapatkan input Kota dari pengguna
+# Fungsi untuk mendapatkan input Provinsi dari pengguna
 def input_Provinsi():
     Provinsi = input("Masukkan nama Provinsi Anda: ")
     return Provinsi
@@ -315,17 +365,17 @@ def get_visi_misi(nomor_urut, data_calon_DPD):
 
     return visi, misi
 
-# Fungsi untuk menjalankan program pemilihan DPRD Kota
+# Fungsi untuk menjalankan program pemilihan DPD
 def pemilihan_DPD():
     data_suara = {}
     data_calon = baca_data_calon()
-    
+
     for Provinsi in data_calon:
         data_suara[Provinsi] = {}
-        
+
         for calon in data_calon[Provinsi]:
             data_suara[Provinsi][calon['nomor_urut']] = 0
-    
+
     while True:
         print("Pemilihan DPD")
         print("--------------------")
@@ -353,25 +403,22 @@ def pemilihan_DPD():
             if nomor_urut in data_suara[Provinsi]:
                 data_suara[Provinsi][nomor_urut] += 1
                 print("Suara Anda telah tercatat.")
-
             else:
                 print("Nomor urut yang Anda pilih tidak valid.")
-
             break
         else:
             print("Provinsi yang Anda masukkan tidak valid. Silakan coba lagi.")
 
-    with open("data_suara_DPD", "w") as file:
-        json.dump(data_suara, file)
-
-    print("Terima kasih atas partisipasi Anda dalam pemilihan DPD.")
+    try:
+        with open("data_suara_DPD.json", "w") as file:
+            json.dump(data_suara, file)
+        print("Terima kasih atas partisipasi Anda dalam pemilihan DPD.")
+    except IOError:
+        print("Terjadi kesalahan saat menyimpan data suara.")
 
 # Menjalankan program pemilihan DPD
 pemilihan_DPD()
 
-import json
-
-# Fungsi untuk membaca data calon DPR dari file JSON
 def baca_data_calon():
     with open("data_calon DPR.json", "r") as file:
         data_calon_DPR = json.load(file)
@@ -468,19 +515,29 @@ pemilihan_DPR()
 import json
 
 def load_candidates(filename):
-    with open(filename, 'r') as file:
-        data = json.load(file)
-    return data['Presiden']
+    try:
+        with open(filename, 'r') as file:
+            data = json.load(file)
+        return data['Presiden']
+    except FileNotFoundError:
+        print(f"File {filename} tidak ditemukan.")
+        return []
+    except json.JSONDecodeError:
+        print(f"File {filename} tidak valid. Format JSON tidak sesuai.")
+        return []
 
 def display_candidates(candidates):
+    if not candidates:
+        print("Tidak ada data calon Presiden.")
+        return
+
     print("Daftar Calon Presiden:")
     print("--------------------")
 
     for candidate in candidates:
         print(f"Nomor Urut: {candidate['nomor_urut']}")
-        print(f"Nomor Urut: {candidate['nama']}")
+        print(f"Nama Calon: {candidate['nama']}")
         print("--------------------")
-
 
 def vote(candidates):
     while True:
@@ -510,7 +567,12 @@ def main():
 
         confirm = input("\nApakah Anda yakin dengan pilihan Anda? (ya/tidak): ")
         if confirm.lower() == "ya":
-            print("\nTerima kasih telah melakukan voting!")
+            try:
+                with open("data_suara_presiden.json", "w") as file:
+                    json.dump(selected_candidate, file)
+                print("\nTerima kasih telah melakukan voting!")
+            except IOError:
+                print("Terjadi kesalahan saat menyimpan data suara.")
             break
         else:
             print("\nPilihan Anda dibatalkan.")
